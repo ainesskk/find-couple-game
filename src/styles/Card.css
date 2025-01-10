@@ -1,0 +1,55 @@
+:root {
+    --card-height: calc((80vh / 4) - 5vh);
+    --card-width: calc(var(--card-height) / 1.5);
+}
+
+.card-container {
+    @apply col-span-1 flex items-center;
+}
+
+.card {
+    @apply relative;
+    width: var(--card-width);
+    height: var(--card-height);
+}
+
+.front, .back {
+    width: var(--card-width);
+    height: var(--card-height);
+    backface-visibility: hidden;
+    transition: transform 0.5s;
+    @apply absolute rounded-lg;
+}
+
+.front {
+    background: url("src/assets/cardFront.png") no-repeat center center;
+    background-size: var(--card-width) var(--card-height);
+    @apply cursor-pointer z-10;
+    transform: rotateY(0deg);
+}
+
+.back {
+    @apply bg-white flex items-center justify-center cursor-pointer -z-0;
+    transform: rotateY(180deg);
+}
+
+.back img {
+    width: calc(var(--card-width) / 2);
+    aspect-ratio: 1;
+}
+
+.card.disabled {
+    pointer-events: none;
+}
+
+.card.flipped > .back  {
+    transform: rotateY(0deg);
+}
+
+.card.flipped > .front {
+    transform: rotateY(-180deg);
+}
+
+.found {
+    @apply hidden;
+}

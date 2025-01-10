@@ -1,0 +1,40 @@
+:root {
+    --max-cards-container-width: 90vw;
+    --max-cards-container-height: 70vh;
+    --card-height: calc((80vh / 4) - 5vh);
+    --card-width: calc(var(--card-height) / 1.5);
+    --gap: 2vh;
+}
+
+.game-container {
+    @apply grid;
+    margin: calc((100vh - var(--max-cards-container-height)) / 2) auto;
+    height: var(--max-cards-container-height);
+    max-width: calc(var(--card-width) * 4 + var(--gap) * 3);
+    grid-row-gap: calc((var(--max-cards-container-height) - 4 * var(--card-height)) / 3);
+    grid-template-columns: repeat(4, var(--card-width));
+    grid-column-gap: var(--gap);
+}
+
+@screen sm{
+    :root{
+        --max-cards-container-width: 80vw;
+        --max-cards-container-height: 70vh;
+        --gap: 3vh;
+    }
+}
+
+@screen md{
+    :root{
+        --max-cards-container-width: 70vw;
+        --max-cards-container-height: 70vh;
+        --gap: 5vh;
+    }
+}
+
+@screen xl{
+    :root{
+        --max-cards-container-width: 50vw;
+        --max-cards-container-height: 70vh;
+    }
+}
