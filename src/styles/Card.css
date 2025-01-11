@@ -5,6 +5,8 @@
 
 .card-container {
     @apply col-span-1 flex items-center;
+    width: var(--card-width);
+    height: var(--card-height);
 }
 
 .card {
@@ -38,18 +40,20 @@
     aspect-ratio: 1;
 }
 
-.card.disabled {
-    pointer-events: none;
-}
-
 .card.flipped > .back  {
+    @apply pointer-events-none;
     transform: rotateY(0deg);
 }
 
 .card.flipped > .front {
+    @apply pointer-events-none;
     transform: rotateY(-180deg);
 }
 
-.found {
-    @apply hidden;
+.matched {
+    @apply hidden pointer-events-none;
+}
+
+.disabled {
+    @apply pointer-events-none;
 }

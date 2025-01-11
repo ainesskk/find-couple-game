@@ -1,39 +1,34 @@
-import "../styles/Card.css"
-import {useContext, useEffect, useState} from "react";
-import CardContext from "../contexts/CardContext.jsx";
+import "../styles/Card.css";
 import PropTypes from "prop-types";
 
-const Card = ({fruit, uuid}) => {
-    const {allDisabled, setSelectedCards, disableFlipping} = useContext(CardContext)
-    const [isFlipped, setIsFlipped] = useState(false);
+const Card = ({ fruit, onClick, disabled }) => {
 
-    useEffect(() => {
-        if (disableFlipping && isFlipped) setIsFlipped(false);
-    }, [disableFlipping]);
 
-    const onCardClick = () => {
-        setIsFlipped(prevState => !prevState);
-        setSelectedCards(prevState => [...prevState, {"id": uuid, "fruit": fruit}]);
-    }
-    // ${allDisabled ? " disabled" : ""}
+    const handleClick = () => {
+        onClick(fruit);
+    };
+
     return (
-        <>
-            <div className="card-container">
-                <div className={`card ${isFlipped ? " flipped" : ""} `} onClick={onCardClick}>
-                    <div className="front"></div>
-                    <div className="back">
-                        <img src={`src/assets/${fruit}.png`} alt="apple"/>
-                    </div>
+        <div className="card-container">
+            <div className={`card ${fruit.isFlipped ? "flipped" : ""} ${fruit.isMatched ? "matched" : ""} ${disabled ? "disabled" : ""}`} onClick={handleClick}>
+                <div className="front"></div>
+                <div className="back">
+                    <img src={`src/assets/${fruit.fruit}.png`} alt={fruit.fruit} />
                 </div>
             </div>
-
-        </>
+        </div>
     );
-}
-
-export default Card;
+};
 
 Card.propTypes = {
-    uuid: PropTypes.string,
-    fruit: PropTypes.string,
-}
+    fruit: PropTypes.shape({
+        uuid: PropTypes.string.isRequired,
+        fruit: PropTypes.string.isRequired,
+        isFlipped: PropTypes.bool.isRequired,
+        isMatched: PropTypes.bool.isRequired,
+    }).isRequired,
+    onClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+};
+
+export default Card;

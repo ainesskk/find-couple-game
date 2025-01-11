@@ -12,14 +12,14 @@ export const shuffle = (arr) => {
 };
 
 export const formFruitsObject = (arr) => {
-    const newObj = {};
+    const objArr = [];
 
     const newArr = shuffle(arr);
 
     for (const element in newArr) {
         const key = uuidv4();
-        newObj[key] = newArr[element];
+        objArr.push({"uuid": key, "fruit": newArr[element], "isFlipped": false, "isMatched": false});
     }
 
-    return newObj;
+    return [...objArr];
 }

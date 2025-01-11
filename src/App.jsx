@@ -7,9 +7,9 @@ function App() {
 
   return (
     <>
-        <CardContextProvider>
+        {/*<CardContextProvider>*/}
             <GameContainer />
-        </CardContextProvider>
+        {/*</CardContextProvider>*/}
     </>
   )
 }
