@@ -7,3 +7,9 @@ html{
     background: url("src/assets/wood.jpg") no-repeat center center fixed;
     background-size: cover;
 }
+
+body {
+    font-family: 'Rubik', serif;
+    font-style: normal;
+    font-size: 20px;
+}

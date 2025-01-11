@@ -10,7 +10,7 @@
 }
 
 .card {
-    @apply relative;
+    @apply relative opacity-100;
     width: var(--card-width);
     height: var(--card-height);
 }
@@ -51,7 +51,7 @@
 }
 
 .matched {
-    @apply hidden pointer-events-none;
+    @apply pointer-events-none opacity-0 transition-all duration-500;
 }
 
 .disabled {

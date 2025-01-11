@@ -3,22 +3,23 @@ import { useEffect, useState } from "react";
 import fruitsArray from "../js/fruitsArray.js";
 import { formFruitsObject } from "../js/arrayFuncs.js";
 import Card from "./Сard.jsx";
+import ModalWindow from "./ModalWindow.jsx";
 
 const GameContainer = () => {
+    const [isModalWindowShown, setIsModalWindowShown] = useState(false);
+    const [matchedCouples, setMatchedCouples] = useState(0);
     const [fruits, setFruits] = useState([]);
     const [selectedCards, setSelectedCards] = useState([]);
     const [disabled, setDisabled] = useState(false);
 
-    const onClick = (clickedCard) => {
+    const onClickCard = (clickedCard) => {
         let selectedCard;
         setFruits(prevState => {
             return prevState.map(item => {
                 if(!item.isFlipped && item.uuid === clickedCard.uuid) {
-                    console.log("массив выбранных",selectedCards);
                     selectedCard = item;
                 }
                 if (item.uuid === clickedCard.uuid) {
-                    console.log("нажатая", item);
                     let newValue = !item.isFlipped;
                     return { ...item, isFlipped: newValue };
                 }
@@ -26,11 +27,13 @@ const GameContainer = () => {
             });
         });
         setSelectedCards(prevState => [...prevState, selectedCard]);
+    }
 
+    const onClickRestart = () => {
+        location. reload()
     }
 
     const turnOverCard = (card) => {
-        console.log("переворот");
         setFruits(prevState => {
             return prevState.map(item => {
                 if (item.uuid === card.uuid) {
@@ -43,20 +46,15 @@ const GameContainer = () => {
     }
 
     useEffect(() => {
+        console.log("restart");
         const shuffledFruits = formFruitsObject([...fruitsArray]);
         setFruits(shuffledFruits);
     }, []);
 
     useEffect(() => {
-        if (selectedCards.length === 2) {
-            console.log("массовый дизейбл ");
-            setDisabled(prevState => !prevState);
-        }
-        setTimeout(() => {
-            console.log("выбранные карты не 2", selectedCards);
             if (selectedCards.length === 2) {
-                console.log("массовый дизейбл ");
-                console.log("выбранные карты ", selectedCards);
+                setDisabled(prevState => !prevState);
+                setTimeout(() => {
                 if (selectedCards[0].fruit === selectedCards[1].fruit) {
                     setFruits(prevState => {
                         return prevState.map(item => {
@@ -66,23 +64,27 @@ const GameContainer = () => {
                             return item;
                         });
                     });
+                    setMatchedCouples(prevState => prevState+1)
                     setSelectedCards([]);
                 } else {
                     turnOverCard(selectedCards[0]);
                     turnOverCard(selectedCards[1])
                     setSelectedCards([]);
-                }
-            }}, 800)
+                }}, 1000)
+            }
         if (selectedCards.length === 0) {
-            console.log("массовый раздизейбл ");
             setDisabled(prevState => !prevState);
+        }
+        if (matchedCouples === 8) {
+            setIsModalWindowShown(true)
         }
     }, [selectedCards]);
 
     return (
         <div className="game-container">
+            <ModalWindow isModalWindowShown={isModalWindowShown} onClickRestart={onClickRestart} />
             {fruits.map((fruit) => (
-                <Card key={fruit.uuid} fruit={fruit} onClick={onClick} disabled={disabled}/>
+                <Card key={fruit.uuid} fruit={fruit} onClick={onClickCard} disabled={disabled}/>
             ))}
         </div>
     );
