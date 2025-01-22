@@ -1,13 +1,20 @@
 .modal-window-container {
-    @apply absolute flex flex-col justify-center text-center rounded-2xl z-20 w-[200px] py-[20px] bg-white top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ;
+    @apply absolute flex flex-col justify-center text-center rounded-2xl z-20 w-[200px] py-[20px] bg-white top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%];
+
 }
 
 .hidden-window {
-    @apply hidden;
+    @apply opacity-0 invisible;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.visible-window {
+    @apply opacity-100 visible;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
 
 .modal-window-container button {
-    @apply mt-3.5
+    @apply mt-3.5;
 }
 
 button {

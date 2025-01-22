@@ -8,7 +8,7 @@ const ModalWindow = ({isModalWindowShown, onClickRestart}) => {
     }
     return (
         <>
-            <div className={`modal-window-container ${isModalWindowShown ? "" : "hidden-window"}`}>
+            <div className={`modal-window-container ${isModalWindowShown ? "visible-window" : "hidden-window"}`}>
                 <p>Play again ?</p>
                 <button onClick={onClick}>Yes</button>
             </div>

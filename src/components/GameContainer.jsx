@@ -30,7 +30,11 @@ const GameContainer = () => {
     }
 
     const onClickRestart = () => {
-        location. reload()
+        const shuffledFruits = formFruitsObject([...fruitsArray]);
+        setFruits(shuffledFruits);
+        setIsModalWindowShown(false);
+        setMatchedCouples(0);
+        setDisabled(prevState => !prevState);
     }
 
     const turnOverCard = (card) => {
@@ -46,7 +50,6 @@ const GameContainer = () => {
     }
 
     useEffect(() => {
-        console.log("restart");
         const shuffledFruits = formFruitsObject([...fruitsArray]);
         setFruits(shuffledFruits);
     }, []);
@@ -76,17 +79,19 @@ const GameContainer = () => {
             setDisabled(prevState => !prevState);
         }
         if (matchedCouples === 8) {
-            setIsModalWindowShown(true)
+            setIsModalWindowShown(true);
         }
-    }, [selectedCards]);
+    }, [selectedCards, matchedCouples]);
 
     return (
-        <div className="game-container">
-            <ModalWindow isModalWindowShown={isModalWindowShown} onClickRestart={onClickRestart} />
-            {fruits.map((fruit) => (
-                <Card key={fruit.uuid} fruit={fruit} onClick={onClickCard} disabled={disabled}/>
-            ))}
-        </div>
+        <>
+            {isModalWindowShown && ( <ModalWindow isModalWindowShown={isModalWindowShown} onClickRestart={onClickRestart} /> )}
+            <div className="game-container">
+                {fruits.map((fruit) => (
+                    <Card key={fruit.uuid} fruit={fruit} onClick={onClickCard} disabled={disabled}/>
+                ))}
+            </div>
+        </>
     );
 };
 
