@@ -13,7 +13,7 @@ const Card = ({ fruit, onClick, disabled }) => {
             <div className={`card ${fruit.isFlipped ? "flipped" : ""} ${fruit.isMatched ? "matched" : ""} ${disabled ? "disabled" : ""}`} onClick={handleClick}>
                 <div className="front"></div>
                 <div className="back">
-                    <img src={`/src/assets/${fruit.fruit}.png`} alt={fruit.fruit} />
+                    <img src={`../assets/${fruit.fruit}.png`} alt={fruit.fruit} />
                 </div>
             </div>
         </div>
