@@ -1,7 +1,7 @@
-import "../styles/GameContainer.css";
+import "./../styles/GameContainer.css";
 import { useEffect, useState } from "react";
-import fruitsArray from "../js/fruitsArray.js";
-import { formFruitsObject } from "../js/arrayFuncs.js";
+import fruitsArray from "./../js/fruitsArray.js";
+import { formFruitsObject } from "./../js/arrayFuncs.js";
 import Card from "./Сard.jsx";
 import ModalWindow from "./ModalWindow.jsx";
 
@@ -10,7 +10,11 @@ const GameContainer = () => {
     const [matchedCouples, setMatchedCouples] = useState(0);
     const [fruits, setFruits] = useState([]);
     const [selectedCards, setSelectedCards] = useState([]);
-    const [disabled, setDisabled] = useState(false);
+    const [disabled, setDisabled] = useState(true);
+
+    useEffect(() => {
+        console.log(disabled);
+    }, [disabled])
 
     const onClickCard = (clickedCard) => {
         let selectedCard;
@@ -85,9 +89,9 @@ const GameContainer = () => {
 
     return (
         <>
-            {isModalWindowShown && ( <ModalWindow isModalWindowShown={isModalWindowShown} onClickRestart={onClickRestart} /> )}
+            {isModalWindowShown && ( <ModalWindow isModalWindowShown={isModalWindowShown} onClickRestart={onClickRestart} />)}
             <div className="game-container">
-                {fruits.map((fruit) => (
+                {fruits && fruits.map((fruit) => (
                     <Card key={fruit.uuid} fruit={fruit} onClick={onClickCard} disabled={disabled}/>
                 ))}
             </div>

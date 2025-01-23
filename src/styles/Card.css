@@ -24,7 +24,7 @@
 }
 
 .front {
-    background: url("src/assets/cardFront.png") no-repeat center center;
+    background: url("/src/assets/cardFront.png") no-repeat center center;
     background-size: var(--card-width) var(--card-height);
     @apply cursor-pointer z-10;
     transform: rotateY(0deg);

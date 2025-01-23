@@ -1,4 +1,4 @@
-import "../styles/ModalWindow.css"
+import "./../styles/ModalWindow.css"
 import PropTypes from "prop-types";
 
 const ModalWindow = ({isModalWindowShown, onClickRestart}) => {
