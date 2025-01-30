@@ -12,10 +12,6 @@ const GameContainer = () => {
     const [selectedCards, setSelectedCards] = useState([]);
     const [disabled, setDisabled] = useState(true);
 
-    useEffect(() => {
-        console.log(disabled);
-    }, [disabled])
-
     const onClickCard = (clickedCard) => {
         let selectedCard;
         setFruits(prevState => {
