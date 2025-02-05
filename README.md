@@ -1,8 +1,29 @@
-# React + Vite
+# Game «Find a couple» / Игра «Найди пару»
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Классическая игра «Найди пару», в которой игроку необходимо поочередно выбирать пары закрытых карточек. Если они совпадают, карточки удаляются с игрового поля. Игра заканчивается, когда пользователь находит все пары. При желании можно сыграть заново.
 
-Currently, two official plugins are available:
+[Нажмите, чтобы перейти на сайт](https://ainesskk.github.io/find-couple-game/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Требования
+
+Перед запуском проекта убедитесь, что у вас установлено следующее программное обеспечение:
+- [Node.js](https://nodejs.org/) >= 14.0.0
+- [yarn](https://yarnpkg.com/) >= 1.22.19
+
+## Использование
+
+После клонирования репозитория для установки зависимостей необходимо выполнить следующую команду:
+
+```$ yarn install```
+
+Для запуска проекта в режиме разработки выполните:
+
+```$ yarn dev```
+
+Для запуска сборки проекта выполните:
+
+```$ yarn build```
+
+Команда для предварительного просмотра сборки:
+
+```$ yarn preview```

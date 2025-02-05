@@ -26,8 +26,6 @@ const Card = ({ fruit, onClick, disabled }) => {
         onClick(fruit);
     };
 
-    // ${disabled ? "disabled" : ""}
-
     return (
         <div className="card-container">
 
